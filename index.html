@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>手机相册</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="touch.js"></script>
+	<script type="text/javascript">
+		document.getElementsByTagName('html')[0].style.fontSize = document.documentElement.clientWidth/3 + 'px';
+	</script>
+</head>
+<body>
+	<article class="page">
+		<header>
+			<a href="javascript:;" class="btn" id="remove">删除</a>
+			<h1>相机相册</h1>
+			<a href="javascript:;" class="btn" id="select">选择</a>
+		</header>
+		<section>
+			<ul class="photo_list" id="photo_list"></ul>
+		</section>
+		<footer>
+			<a href="javascript:;" class="footer_btn active">相机相册</a>
+			<a href="javascript:;" class="footer_btn">所有相册</a>
+		</footer>
+		<div class="recycle"></div>
+		<div class="recycle"></div>
+	</article>
+</body>
+</html>
