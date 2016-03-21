@@ -61,12 +61,16 @@ section{
 	overflow: auto;
 	background-color: #000;
 }
-section li {
+.photo_list {
+	position: relative;
+}
+.photo_list li {
+	position: absolute;
 	width: 1rem;
 	height: 1rem;
 	border: 2px solid #000;
-	float: left;
 	background-size: cover;
+	transition: left 0.5s, top 0.5s;
 }
 footer {
 	position: absolute;

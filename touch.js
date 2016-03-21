@@ -1,7 +1,17 @@
 window.onload = function() {
+	var oSelect = document.getElementById('select');
+	var oPhoto = document.getElementById('photo_list');
+	var oRemove = document.getElementById('remove');
+	var aSingle = oPhoto.getElementsByTagName('li');
+
+	(function init (){
+		createPhotos ()
+		toPosition();
+		removePhotos();
+	})();
+
 	//生成图片
-	(function createPhotos (){
-		var oPhoto = document.getElementById('photo_list');
+	function createPhotos (){
 		var photoList = [];
 		var photoHtml = '';
 		for (var i = 1; i <= 16; i++){
@@ -11,21 +21,20 @@ window.onload = function() {
 			photoHtml += "<li style='background-image:url("+ photoList[i]+")'></li>";
 		}
 		oPhoto.innerHTML = photoHtml;
-	})();
+		
+	};
 
 	//删除照片
-	(function removePhotos(){
-		var oSelect = document.getElementById('select');
-		var oPhoto = document.getElementById('photo_list');
-		var oRemove = document.getElementById('remove');
-		var aSingle = oPhoto.getElementsByTagName('li');
+	function removePhotos(){
+		
 		var arr = [];
 		oSelect.addEventListener('click', fnSelected, false);
 		function fnSelected (){
 			if(this.innerHTML == '取消'){
 				this.innerHTML = '选择';
-				for(var i = 0; i < arr.length; i++){
-					aSingle[arr[i]].style.border = '2px solid #000';
+				for(var i = 0; i < aSingle.length; i++){
+					aSingle[i].onclick = null;
+					aSingle[i].style.opacity = '1';
 				}
 				arr = [];
 				oRemove.style.display = 'none';
@@ -36,7 +45,7 @@ window.onload = function() {
 				for(var i = 0; i < aSingle.length; i++){
 					aSingle[i].index = i;
 					aSingle[i].onclick = function (){
-						this.style.border = '5px solid #fff';
+						this.style.opacity = '0.2';
 						arr.push(this.index);
 					}
 				}
@@ -48,9 +57,11 @@ window.onload = function() {
 			arr.sort(function(a,b){
 				return a-b;
 			});
+
 			while(arr.length){
 				for(var i=0; i<arr.length; i++){
 					aSingle[arr.pop()].remove();
+					toPosition();
 					for(var i = 0; i < aSingle.length; i++){
 						aSingle[i].index = i;
 					}
@@ -58,5 +69,12 @@ window.onload = function() {
 			}
 		}
 
-	})()
+	}
+	//定位照片
+	function toPosition(){
+			for(var i=0; i<aSingle.length; i++){
+				aSingle[i].style.left = i%3 + 'rem';
+				aSingle[i].style.top = Math.floor(i/3) + 'rem';
+			}
+	}
 };
