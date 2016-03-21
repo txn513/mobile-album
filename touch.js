@@ -22,13 +22,24 @@ window.onload = function() {
 		var arr = [];
 		oSelect.addEventListener('click', fnSelected, false);
 		function fnSelected (){
-			this.innerHTML = '取消';
-			oRemove.style.display = 'block';
-			for(var i = 0; i < aSingle.length; i++){
-				aSingle[i].index = i;
-				aSingle[i].onclick = function (){
-					this.style.border = '1px solid #fff';
-					arr.push(this.index);
+			if(this.innerHTML == '取消'){
+				this.innerHTML = '选择';
+				for(var i = 0; i < arr.length; i++){
+					aSingle[arr[i]].style.border = '1px solid #000';
+				}
+				arr = [];
+				oRemove.style.display = 'none';
+			}
+			else{
+				alert(this.innerHTML)
+				this.innerHTML = '取消';
+				oRemove.style.display = 'block';
+				for(var i = 0; i < aSingle.length; i++){
+					aSingle[i].index = i;
+					aSingle[i].onclick = function (){
+						this.style.border = '1px solid #fff';
+						arr.push(this.index);
+					}
 				}
 			}
 		}
@@ -47,5 +58,6 @@ window.onload = function() {
 				}
 			}
 		}
+
 	})()
 };
