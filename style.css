@@ -59,11 +59,12 @@ section{
 	left: 0;
 	width: 100%;
 	overflow: auto;
+	background-color: #000;
 }
 section li {
 	width: 1rem;
 	height: 1rem;
-	border: 1px solid #000;
+	border: 2px solid #000;
 	float: left;
 	background-size: cover;
 }
